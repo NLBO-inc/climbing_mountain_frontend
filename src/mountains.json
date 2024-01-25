@@ -1,0 +1,8 @@
+{
+	"mountains": [
+		{"name": "북한산", "latitude" : 37.6617, "longitude" : 126.9931, "height": "835.0m", "level": 3},
+		{"name": "아차산", "latitude" : 37.5722, "longitude" : 127.1039, "height": "295.7m", "level": 1},
+		{"name": "용마산", "latitude" : 37.5713, "longitude" : 127.0958, "height": "348.5m", "level": 2},
+		{"name": "봉화산", "latitude" : 37.6086, "longitude" : 127.0870, "height": "520.0m", "level": 3}
+	]
+}
