@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 const KakaoLogin = () => {
   // TODO: secret 처리
   const REST_API_KEY = 'ed13807bf40fa18ae2ceb31e732c4b97'
@@ -8,7 +10,7 @@ const KakaoLogin = () => {
   return (
     <button onClick={onClickKakaoLogin}>
       로그인
-      <img src="/img/kakao_login_large_wide.png" alt="kakao login" />
+      <Image src="/img/kakao_login_large_wide.png" alt="kakao login" />
     </button>
   )
 }
