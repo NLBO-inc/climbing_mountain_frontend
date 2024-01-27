@@ -2,7 +2,9 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
+import { ColorInfo } from '.'
 
+// TODO: mapDiv 에러 해결
 interface INaverMapProps {
   currentLocation: {
     lat: number
@@ -173,25 +175,7 @@ export const NaverMap = (props: INaverMapProps) => {
           height={24}
         />
       </button>
-      {colorInfoOpened && (
-        <div
-          style={{
-            left: '16px',
-            backgroundColor: 'white',
-            height: '200px',
-            width: '226px',
-            borderRadius: '16px',
-            padding: '20px 16px',
-            border: '1px solid #E5E5E5',
-            position: 'absolute',
-            zIndex: 10,
-            bottom: '86px',
-            boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-          }}
-        >
-          색 정보
-        </div>
-      )}
+      {colorInfoOpened && <ColorInfo />}
       <button
         style={{
           background: 'white',
