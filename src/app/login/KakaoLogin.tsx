@@ -10,7 +10,7 @@ const KakaoLogin = () => {
   return (
     <button onClick={onClickKakaoLogin}>
       로그인
-      <Image src="/img/kakao_login_large_wide.png" alt="kakao login" />
+      <Image src="/img/kakao_login_large_wide.png" alt="kakao login" width={200} height={30} />
     </button>
   )
 }
