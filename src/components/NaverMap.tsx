@@ -2,9 +2,10 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import { ColorInfo } from '.'
+import { BottomSheet, ColorInfo } from '.'
 
 // TODO: mapDiv 에러 해결
+// TODO: NaverMap 컴포넌트 위치 고민
 interface INaverMapProps {
   currentLocation: {
     lat: number
@@ -56,6 +57,7 @@ export const NaverMap = (props: INaverMapProps) => {
   const map = useRef<HTMLDivElement>(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [colorInfoOpened, setColorInfoOpened] = useState(false)
+  const [bottomSheetOpened, setBottomSheetOpened] = useState(false)
 
   useEffect(() => {
     const script = document.createElement('script')
@@ -66,10 +68,6 @@ export const NaverMap = (props: INaverMapProps) => {
       initMap()
     }
     document.head.appendChild(script)
-
-    return () => {
-      document.head.removeChild(script)
-    }
   }, [])
 
   const initMap = () => {
@@ -146,8 +144,8 @@ export const NaverMap = (props: INaverMapProps) => {
 
   const { mapHeight, hasIcon, getUserLocation } = props
 
-  const NaverMapWrapper = hasIcon ? (
-    <div className="naver-map" ref={map} style={{ height: mapHeight }}>
+  const BottomSheetClosed = () => (
+    <>
       <button
         type="button"
         // className="absolute right-16 bottom-36 h-44 w-44 flex justify-center items-center z-10"
@@ -166,7 +164,8 @@ export const NaverMap = (props: INaverMapProps) => {
           zIndex: 10,
           border: 'none',
         }}
-        onClick={() => getUserLocation && getUserLocation()}
+        // onClick={() => getUserLocation && getUserLocation()}
+        onClick={() => setBottomSheetOpened(!bottomSheetOpened)}
       >
         <Image
           src="/img/icons/location.png"
@@ -177,8 +176,9 @@ export const NaverMap = (props: INaverMapProps) => {
       </button>
       {colorInfoOpened && <ColorInfo />}
       <button
+        className="bg-blue-500"
         style={{
-          background: 'white',
+          // background: 'white',
           borderRadius: '44px',
           boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
           position: 'absolute',
@@ -208,6 +208,16 @@ export const NaverMap = (props: INaverMapProps) => {
           }}
         />
       </button>
+    </>
+  );
+
+  const NaverMapWrapper = hasIcon ? (
+    <div className="naver-map" ref={map} style={{ height: mapHeight }}>
+      {bottomSheetOpened ? (
+        <BottomSheet setBottomSheetOpened={() => setBottomSheetOpened(false)} />
+      ) : (
+        <BottomSheetClosed />
+      )}
     </div>
   ) : (
     <div className="naver-map" ref={map} style={{ height: mapHeight }} />
